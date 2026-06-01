@@ -3,27 +3,9 @@ pipeline {
 
     stages {
 
-        stage('Build') {
+        stage('Check Docker') {
             steps {
-                echo 'Building image'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo 'Deploying'
-            }
-        }
-
-        stage('Health Check') {
-            steps {
-                echo 'Checking'
-            }
-        }
-
-        stage('Switch Traffic') {
-            steps {
-                echo 'Switching'
+                sh 'docker ps'
             }
         }
 
