@@ -9,5 +9,11 @@ pipeline {
             }
         }
 
+        stage('Build New Image') {
+            steps {
+                sh 'docker build -t bluegreen-app:test .'
+            }
+        }
+
     }
 }
