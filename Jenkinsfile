@@ -15,5 +15,11 @@ pipeline {
             }
         }
 
+        stage('Check Running App') {
+            steps {
+                sh 'curl http://host.docker.internal:8085'
+            }
+        }
+
     }
 }
