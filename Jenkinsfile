@@ -20,12 +20,20 @@ pipeline {
                 sh 'curl http://host.docker.internal:8085'
             }
         }
-        
+
         stage('Deploy Test Container') {
     steps {
         sh '''
         docker rm -f test-deploy || true
         docker run -d --name test-deploy -p 8086:3000 bluegreen-app:test
+        '''
+    }
+}
+
+stage('Health Check') {
+    steps {
+        sh '''
+        curl http://host.docker.internal:8085/health
         '''
     }
 }
