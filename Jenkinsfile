@@ -130,6 +130,12 @@ stage('Switch Traffic') {
     }
 }
 
+stage('Check Current App') {
+            steps {
+                sh 'curl http://host.docker.internal:8085'
+            }
+        }
+
 stage('Cleanup') {
     steps {
         sh 'docker rm -f test-deploy || true'
