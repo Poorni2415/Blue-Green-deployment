@@ -84,9 +84,10 @@ stage('Deploy') {
         docker rm ${TARGET_ENV} || true
 
         docker run -d \
-          --name ${TARGET_ENV} \
-          -p ${TARGET_PORT}:3000 \
-          bluegreen-app:test
+  --name ${TARGET_ENV} \
+  --network blue-green-app_default \
+  -p ${TARGET_PORT}:3000 \
+  bluegreen-app:test
         '''
     }
 }
