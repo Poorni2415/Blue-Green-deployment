@@ -38,5 +38,20 @@ stage('Health Check') {
     }
 }
 
+stage('Detect Active Environment') {
+    steps {
+        script {
+
+            def active = sh(
+                script: "curl -s http://host.docker.internal:8085",
+                returnStdout: true
+            ).trim()
+
+            echo "Current App: ${active}"
+
+        }
+    }
+}
+
     }
 }
